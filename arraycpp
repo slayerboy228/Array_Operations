@@ -4,10 +4,11 @@ using namespace std;
 // Array Operations
 class Array
 {
-public:
     int size;
     int length;
     int *a;
+
+public:
     void display();                // 1 Display()
     void append(int x);            // 2 add(x)/append(x)
     void insert(int index, int x); // 3 Insert(index, x)
@@ -36,6 +37,18 @@ public:
     Array AnotB(Array &obj);            // 23 AnotB()
     Array AnotBsort(Array &obj);        // 24 AnotBsort()
     void insertarr();
+    Array()
+    {
+        size = 10;
+        length = 0;
+        a = new int[size];
+    }
+    Array(int s)
+    {
+        size = s;
+        length = 0;
+        a = new int[size];
+    }
     ~Array()
     {
         delete[] a;
@@ -46,11 +59,11 @@ void swap(int &, int &);
 
 int main()
 {
-    Array arr;
+    Array *arr;
+    int s;
     cout << "Enter size of array:" << endl;
-    cin >> arr.size;
-    arr.length = 0;
-    arr.a = new int[arr.size];
+    cin >> s;
+    arr = new Array;
     int ch;
     while (1)
     {
@@ -92,12 +105,12 @@ int main()
             int x;
             cout << "Enter an element." << endl;
             cin >> x;
-            arr.append(x);
+            arr->append(x);
         }
         break;
         case 2:
         {
-            arr.display();
+            arr->display();
         }
         break;
         case 3:
@@ -107,7 +120,7 @@ int main()
             cin >> p;
             cout << "Enter element to insert:" << endl;
             cin >> x;
-            arr.insert(p, x);
+            arr->insert(p, x);
         }
         break;
         case 4:
@@ -115,7 +128,7 @@ int main()
             int p;
             cout << "Enter index to delete:" << endl;
             cin >> p;
-            arr.Delete(p);
+            arr->Delete(p);
         }
         break;
         case 5:
@@ -123,7 +136,7 @@ int main()
             int x;
             cout << "Enter target element to Search:" << endl;
             cin >> x;
-            cout << "Element is at index : " << arr.BinSearch(x) << endl;
+            cout << "Element is at index : " << arr->BinSearch(x) << endl;
         }
         break;
         case 6:
@@ -131,7 +144,7 @@ int main()
             int p, x;
             cout << "Enter index to Get:" << endl;
             cin >> p;
-            cout << "Element at " << p << " is: " << arr.get(p) << endl;
+            cout << "Element at " << p << " is: " << arr->get(p) << endl;
         }
         break;
         case 7:
@@ -141,55 +154,55 @@ int main()
             cin >> p;
             cout << "Enter element to set:" << endl;
             cin >> x;
-            arr.set(p, x);
+            arr->set(p, x);
         }
         break;
         case 8:
         {
-            cout << "Largest element is : " << arr.Max() << endl;
+            cout << "Largest element is : " << arr->Max() << endl;
         }
         break;
         case 9:
         {
-            cout << "Smallest element is : " << arr.Min() << endl;
+            cout << "Smallest element is : " << arr->Min() << endl;
         }
         break;
         case 10:
         {
-            arr.reverse();
+            arr->reverse();
         }
         break;
         case 11:
         {
-            cout << "Summation of array is : " << arr.Summation() << endl;
+            cout << "Summation of array is : " << arr->Summation() << endl;
         }
         break;
         case 12:
         {
-            cout << "Average of array is : " << arr.avg() << endl;
+            cout << "Average of array is : " << arr->avg() << endl;
         }
         break;
         case 13:
         {
-            cout << "Checking array sorted or not : " << arr.checkSort() << endl;
+            cout << "Checking array sorted or not : " << arr->checkSort() << endl;
         }
         break;
         case 14:
         {
             int x;
-            cout<<"Enter element to insert at sorted array:"<<endl;
-            cin>>x;
-            arr.insertsort(x);
+            cout << "Enter element to insert at sorted array:" << endl;
+            cin >> x;
+            arr->insertsort(x);
         }
         break;
         case 15:
         {
-            arr.rearrange();
+            arr->rearrange();
         }
         break;
         case 16:
         {
-            arr.sort();
+            arr->sort();
         }
         break;
         default:
@@ -212,8 +225,9 @@ void Array ::display()
     cout << "Elements are" << endl;
     for (int i = 0; i < length; i++)
     {
-        cout << a[i] << endl;
+        cout << a[i] << " ";
     }
+    cout << endl;
 }
 
 void Array ::insertarr()
