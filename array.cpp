@@ -43,13 +43,13 @@ public:
     {
         size = 10;
         length = 0;
-        a = new int[size];
+        a = new T[size];
     }
     Array(int s)
     {
         size = s;
         length = 0;
-        a = new int[size];
+        a = new T[size];
     }
     ~Array()
     {
