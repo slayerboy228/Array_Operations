@@ -2,40 +2,42 @@
 using namespace std;
 
 // Array Operations
+template <class T>
 class Array
 {
     int size;
     int length;
-    int *a;
+    T *a;
 
 public:
-    void display();                // 1 Display()
-    void append(int x);            // 2 add(x)/append(x)
-    void insert(int index, int x); // 3 Insert(index, x)
-    int Delete(int index);         // 4 Delete(index, x)
-    int Search(int x);             // 5 Search(x)
-    int BinSearch(int x);          // (i) Binary Search(x)
-    int RBinSearch(int x);         // (ii) Recursive Binary Search(x)
-    int get(int index);            // 6 Get(index)
-    void set(int index, int x);    // 7 Set(index, x)
-    int Max();                     // 8 Max()
-    int Min();                     // Min()
-    void reverse();                // 9 Reverse()
+    void swap(T &, T &);
+    void display();              // 1 Display()
+    void append(T x);            // 2 add(x)/append(x)
+    void insert(int index, T x); // 3 Insert(index, x)
+    T Delete(int index);         // 4 Delete(index, x)
+    int Search(T x);             // 5 Search(x)
+    int BinSearch(T x);          // (i) Binary Search(x)
+    int RBinSearch(T x);         // (ii) Recursive Binary Search(x)
+    T get(int index);            // 6 Get(index)
+    void set(int index, T x);    // 7 Set(index, x)
+    T Max();                     // 8 Max()
+    T Min();                     // Min()
+    void reverse();              // 9 Reverse()
     // 10 Shift()/Rotate()
-    int Summation();                    // 11 Summation()
-    float avg();                        // 12 Average()
-    bool checkSort();                   // 13 Checking Sorted()
-    void insertsort(int x);             // 14 insersort(x)
-    void rearrange();                   // 15 Rearrange()
-    void sort();                        // 16 sorting()
-    Array merging(Array &obj);          // 17 merging(obj)
-    Array mergesort(Array &obj);        // 18 mergesort(obj)
-    Array unionarr(Array &obj);         // 19 union(obj)
-    Array unionarrsort(Array &obj);     // 20 unionsort(obj)
-    Array intersection(Array &obj);     // 21 intersection(obj)
-    Array intersectionsort(Array &obj); // 22 intersectionsort(obj)
-    Array AnotB(Array &obj);            // 23 AnotB()
-    Array AnotBsort(Array &obj);        // 24 AnotBsort()
+    T Summation();                            // 11 Summation()
+    float avg();                              // 12 Average()
+    bool checkSort();                         // 13 Checking Sorted()
+    void insertsort(T x);                     // 14 insersort(x)
+    void rearrange();                         // 15 Rearrange()
+    void sort();                              // 16 sorting()
+    Array<T> merging(Array<T> &obj);          // 17 merging(obj)
+    Array<T> mergesort(Array<T> &obj);        // 18 mergesort(obj)
+    Array<T> unionarr(Array<T> &obj);         // 19 union(obj)
+    Array<T> unionarrsort(Array<T> &obj);     // 20 unionsort(obj)
+    Array<T> intersection(Array<T> &obj);     // 21 intersection(obj)
+    Array<T> intersectionsort(Array<T> &obj); // 22 intersectionsort(obj)
+    Array<T> AnotB(Array<T> &obj);            // 23 AnotB()
+    Array<T> AnotBsort(Array<T> &obj);        // 24 AnotBsort()
     void insertarr();
     Array()
     {
@@ -55,15 +57,13 @@ public:
     }
 };
 
-void swap(int &, int &);
-
 int main()
 {
-    Array *arr;
+    Array<int> *arr;
     int s;
     cout << "Enter size of array:" << endl;
     cin >> s;
-    arr = new Array;
+    arr = new Array<int>;
     int ch;
     while (1)
     {
@@ -213,14 +213,16 @@ int main()
     return 0;
 }
 
-void swap(int &a, int &b)
+template <class T>
+void Array<T>::swap(T &a, T &b)
 {
-    int t = a;
+    T t = a;
     a = b;
     b = t;
 }
 
-void Array ::display()
+template <class T>
+void Array<T>::display()
 {
     cout << "Elements are" << endl;
     for (int i = 0; i < length; i++)
@@ -230,7 +232,8 @@ void Array ::display()
     cout << endl;
 }
 
-void Array ::insertarr()
+template <class T>
+void Array<T>::insertarr()
 {
     for (int i = 0; i < length; i++)
     {
@@ -238,7 +241,8 @@ void Array ::insertarr()
     }
 }
 
-void Array::append(int x)
+template <class T>
+void Array<T>::append(T x)
 {
     if (length < size)
     {
@@ -247,7 +251,8 @@ void Array::append(int x)
     }
 }
 
-void Array ::insert(int index, int x)
+template <class T>
+void Array<T>::insert(int index, T x)
 {
     if (index >= 0 and index < length)
     {
@@ -260,7 +265,8 @@ void Array ::insert(int index, int x)
     }
 }
 
-int Array ::Delete(int index)
+template <class T>
+T Array<T>::Delete(int index)
 {
     if (index >= 0 and index < length)
     {
@@ -275,7 +281,8 @@ int Array ::Delete(int index)
     return -1;
 }
 
-int Array ::Search(int x)
+template <class T>
+int Array<T>::Search(T x)
 {
     for (int i = 0; i < length; i++)
     {
@@ -285,7 +292,8 @@ int Array ::Search(int x)
     return -1;
 }
 
-int Array ::BinSearch(int x)
+template <class T>
+int Array<T>::BinSearch(T x)
 {
     int l, h, mid;
     l = 0;
@@ -303,7 +311,8 @@ int Array ::BinSearch(int x)
     return -1;
 }
 
-int Array::RBinSearch(int x)
+template <class T>
+int Array<T>::RBinSearch(T x)
 {
     static int l = 0;
     static int h = length - 1;
@@ -327,21 +336,24 @@ int Array::RBinSearch(int x)
     return -1;
 }
 
-int Array ::get(int index)
+template <class T>
+T Array<T>::get(int index)
 {
     if (index >= 0 and index < length)
         return a[index];
 }
 
-void Array::set(int index, int x)
+template <class T>
+void Array<T>::set(int index, T x)
 {
     if (index >= 0 and index < length)
         a[index] = x;
 }
 
-int Array ::Max()
+template <class T>
+T Array<T>::Max()
 {
-    int max = a[0];
+    T max = a[0];
     for (int i = 0; i < length; i++)
     {
         if (max < a[i])
@@ -350,9 +362,10 @@ int Array ::Max()
     return max;
 }
 
-int Array ::Min()
+template <class T>
+T Array<T>::Min()
 {
-    int min = a[0];
+    T min = a[0];
     for (int i = 0; i < length; i++)
     {
         if (min > a[i])
@@ -361,15 +374,17 @@ int Array ::Min()
     return min;
 }
 
-int Array::Summation()
+template <class T>
+T Array<T>::Summation()
 {
-    int sum = 0;
+    T sum = 0;
     for (int i = 0; i < length; i++)
         sum += a[i];
     return sum;
 }
 
-float Array::avg()
+template <class T>
+float Array<T>::avg()
 {
     int sum = 0;
     for (int i = 0; i < length; i++)
@@ -377,13 +392,15 @@ float Array::avg()
     return (float)sum / length;
 }
 
-void Array::reverse()
+template <class T>
+void Array<T>::reverse()
 {
     for (int i = 0; i < length / 2; i++)
         swap(a[i], a[length - 1 - i]);
 }
 
-bool Array::checkSort()
+template <class T>
+bool Array<T>::checkSort()
 {
     for (int i = 0; i < length - 1; i++)
     {
@@ -393,7 +410,8 @@ bool Array::checkSort()
     return true;
 }
 
-void Array::insertsort(int x)
+template <class T>
+void Array<T>::insertsort(T x)
 {
     int i = length - 1;
     while (a[i] > x and i >= 0)
@@ -405,7 +423,8 @@ void Array::insertsort(int x)
     length++;
 }
 
-void Array::rearrange()
+template <class T>
+void Array<T>::rearrange()
 {
     int i, j;
     i = 0;
@@ -421,10 +440,11 @@ void Array::rearrange()
     }
 }
 
-Array Array ::merging(Array &obj)
+template <class T>
+Array<T> Array<T>::merging(Array<T> &obj)
 {
     Array merge;
-    merge.a = new int[length + obj.length];
+    merge.a = new T[length + obj.length];
     for (int i = 0; i < length; i++)
     {
         merge.a[i] = a[i];
@@ -438,7 +458,8 @@ Array Array ::merging(Array &obj)
     return merge;
 }
 
-void Array::sort()
+template <class T>
+void Array<T>::sort()
 {
     for (int i = 0; i < length; i++)
     {
@@ -450,11 +471,12 @@ void Array::sort()
     }
 }
 
-Array Array::mergesort(Array &obj)
+template <class T>
+Array<T> Array<T>::mergesort(Array<T> &obj)
 {
-    Array merge;
+    Array<T> merge;
     merge.size = length + obj.length;
-    merge.a = new int[merge.size];
+    merge.a = new T[merge.size];
     int i, j, k;
     i = j = k = 0;
     while (i < length and j < obj.length)
@@ -472,12 +494,13 @@ Array Array::mergesort(Array &obj)
     return merge;
 }
 
-Array Array::unionarr(Array &obj)
+template <class T>
+Array<T> Array<T>::unionarr(Array<T> &obj)
 {
-    Array u;
+    Array<T> u;
     u.size = length + obj.length;
     u.length = 0;
-    u.a = new int[u.size];
+    u.a = new T[u.size];
     for (int i = 0; i < length; i++)
         u.a[u.length++] = a[i];
 
@@ -498,12 +521,13 @@ Array Array::unionarr(Array &obj)
     return u;
 }
 
-Array Array::unionarrsort(Array &obj)
+template <class T>
+Array<T> Array<T>::unionarrsort(Array<T> &obj)
 {
     Array u;
     u.size = length + obj.length;
     u.length = 0;
-    u.a = new int[u.size];
+    u.a = new T[u.size];
     int i, j, k;
     i = j = k = 0;
     while (i < length and j < obj.length)
@@ -526,12 +550,13 @@ Array Array::unionarrsort(Array &obj)
     return u;
 }
 
-Array Array::intersection(Array &obj)
+template <class T>
+Array<T> Array<T>::intersection(Array<T> &obj)
 {
-    Array inter;
+    Array<T> inter;
     inter.size = length + obj.length;
     inter.length = 0;
-    inter.a = new int[inter.size];
+    inter.a = new T[inter.size];
     for (int i = 0; i < length; i++)
     {
         for (int j = 0; j < obj.length; j++)
@@ -543,12 +568,13 @@ Array Array::intersection(Array &obj)
     return inter;
 }
 
-Array Array::intersectionsort(Array &obj)
+template <class T>
+Array<T> Array<T>::intersectionsort(Array<T> &obj)
 {
-    Array inter;
+    Array<T> inter;
     inter.size = length + obj.length;
     inter.length = 0;
-    inter.a = new int[inter.size];
+    inter.a = new T[inter.size];
     int i, j, k;
     i = j = k = 0;
     while (i < length and j < obj.length)
@@ -567,12 +593,13 @@ Array Array::intersectionsort(Array &obj)
     return inter;
 }
 
-Array Array::AnotB(Array &obj)
+template <class T>
+Array<T> Array<T>::AnotB(Array<T> &obj)
 {
-    Array anotb;
+    Array<T> anotb;
     anotb.size = length + obj.length;
     anotb.length = 0;
-    anotb.a = new int[anotb.size];
+    anotb.a = new T[anotb.size];
     for (int i = 0; i < length; i++)
     {
         bool found = false;
@@ -587,12 +614,13 @@ Array Array::AnotB(Array &obj)
     return anotb;
 }
 
-Array Array::AnotBsort(Array &obj)
+template <class T>
+Array<T> Array<T>::AnotBsort(Array<T> &obj)
 {
-    Array c;
+    Array<T> c;
     c.size = length + obj.length;
     c.length = 0;
-    c.a = new int[c.size];
+    c.a = new T[c.size];
     int i, j;
     i = j = 0;
     while (i < length and j < obj.length)
